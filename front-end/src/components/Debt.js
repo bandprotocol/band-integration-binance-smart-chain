@@ -88,7 +88,9 @@ export default ({ pKey }) => {
       <Flex mt="2.0vw" justifyContent="center" style={{ fontSize: "2.0vw" }}>
         <button
           onClick={async () => {
-            const amount = window.prompt("Amount of SPX to be borrowed");
+            const amount = window.prompt(
+              "Amount of Macy tokens to be borrowed",
+            );
             await sendBorrow(pKey, amount * 1e18);
           }}
         >
@@ -151,7 +153,7 @@ export default ({ pKey }) => {
       <Flex mt="2.0vw" justifyContent="center" style={{ fontSize: "2.0vw" }}>
         <button
           onClick={async () => {
-            const amount = window.prompt("Amount of Celo Dollar to be locked");
+            const amount = window.prompt("Amount of BUSD to be locked");
             await sendLock(pKey, amount * 1e18);
           }}
         >
@@ -160,9 +162,7 @@ export default ({ pKey }) => {
         <Flex mx="3.0vw" />
         <button
           onClick={async () => {
-            const amount = window.prompt(
-              "Amount of Celo Dollar to be unlocked",
-            );
+            const amount = window.prompt("Amount of BUSD to be unlocked");
             await sendUnlock(pKey, amount * 1e18);
           }}
         >

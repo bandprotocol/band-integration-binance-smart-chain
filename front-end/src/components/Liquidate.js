@@ -12,20 +12,18 @@ export default ({ pKey }) => {
       flexDirection="column"
       style={{
         padding: "1.0vw",
-        border: "1px solid #333333",
-        minWidth: "32.0vw",
-        borderRadius: "4px",
+        paddingTop: "2vw",
+        borderRadius: "16px",
+        backgroundColor: "#212A65",
+        width: "32.500vw",
+        height: "10.069vw",
+        justifyContent:"center"
       }}
     >
-      <Flex
-        backgroundColor={colors.pink.dark}
-        justifyContent="space-between"
-        style={{ color: "white", margin: "-1.0vw", padding: "1.0vw" }}
-      >
-        <Text>Dangerous zone</Text>
-      </Flex>
-      <Flex mt="2.0vw" justifyContent="space-between">
+      <Text fontSize="0.972vw" fontWeight="bold" color="white" style={{ display: "flex", justifyContent: "center" }}>Dangerous Zone</Text>
+      <Flex mt="2.0vw" justifyContent="center">
         <button
+          style={{ width: "17.292vw", height: "2.222vw", display: "flex", justifyContent: "center", alignItems:"center",backgroundColor: "transparent", border: "0.5px solid white", borderRadius:"10px",color: "white" }}
           onClick={async () => {
             const who = window.prompt("Who(address) to be liquidated");
             if (!who || !who.match(/^[0-9A-Fa-f]{40}$/g)) {

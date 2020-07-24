@@ -46,47 +46,49 @@ export default ({ pKey }) => {
       flexDirection="column"
       style={{
         padding: "1.0vw",
-        border: "1px solid #333333",
+        paddingTop: "2vw",
         minWidth: "32.0vw",
-        borderRadius: "4px",
+        borderRadius: "16px",
+        backgroundColor: "#212A65",
       }}
     >
+
+      <Text fontSize="0.972vw" fontWeight="bold" color="white" style={{ display: "flex", justifyContent: "center" }}>Dangerous Zone</Text>
       <Flex
-        backgroundColor={colors.pink.dark}
+        mt="3.0vw"
         justifyContent="space-between"
-        style={{ color: "white", margin: "-1.0vw", padding: "1.0vw" }}
+        alignItems="center"
+        style={{
+          fontSize: "1.0vw", minHeight: "30px", borderBottom: "1px solid black",
+          height: "3.333vw",
+        }}
       >
-        <Text>Synthetic Stock Balance</Text>
-        <Flex />
+        <Text color="white" fontWeight="bold" fontSize="0.833vw">Current Macy stock price </Text>
+        {spxPrice ? (
+          <Text color="white">{spxPrice + " USD"}</Text>
+        ) : (
+            <Image src={loading} width="50px" />
+          )}
       </Flex>
       <Flex
         mt="3.0vw"
         justifyContent="space-between"
         alignItems="center"
-        style={{ fontSize: "1.0vw", minHeight: "30px" }}
+        style={{
+          fontSize: "1.0vw", minHeight: "30px", borderBottom: "1px solid black",
+          height: "3.333vw",
+        }}
       >
-        <Text>Current Macy stock price </Text>
-        {spxPrice ? (
-          <Text>{spxPrice + " USD"}</Text>
-        ) : (
-          <Image src={loading} width="50px" />
-        )}
-      </Flex>
-      <Flex
-        mt="1.0vw"
-        justifyContent="space-between"
-        alignItems="center"
-        style={{ fontSize: "1.0vw", minHeight: "30px" }}
-      >
-        <Text>Your Macy token balance </Text>
+        <Text color="white" fontWeight="bold" fontSize="0.833vw">Your Macy token balance </Text>
         {spx < 0 ? (
           <Image src={loading} width="50px" />
         ) : (
-          <Text>{spx / 1e18 + " Macy"}</Text>
-        )}
+            <Text color="white">{spx / 1e18 + " Macy"}</Text>
+          )}
       </Flex>
       <Flex mt="2.0vw" justifyContent="center" style={{ fontSize: "2.0vw" }}>
         <button
+          style={{ width: "8.611vw", height: "2.222vw", display: "flex", justifyContent: "center", alignItems:"center",backgroundColor: "transparent", border: "0.5px solid white", borderRadius:"10px",color: "white" }}
           onClick={async () => {
             const amount = window.prompt(
               "Amount of Macy tokens to be borrowed",
@@ -98,6 +100,7 @@ export default ({ pKey }) => {
         </button>
         <Flex mx="1.5vw" />
         <button
+          style={{width: "8.611vw", height: "2.222vw", display: "flex", justifyContent: "center", alignItems:"center",backgroundColor: "transparent", border: "0.5px solid white", borderRadius:"10px",color: "white" }}
           onClick={async () => {
             const amount = window.prompt(
               "Amount of Macy tokens (debt) you want to return",
@@ -109,6 +112,7 @@ export default ({ pKey }) => {
         </button>
         <Flex mx="1.5vw" />
         <button
+          style={{ width: "8.611vw", height: "2.222vw", display: "flex", justifyContent: "center", alignItems:"center",backgroundColor: "transparent", border: "0.5px solid white", borderRadius:"10px",color: "white" }}
           onClick={async () => {
             const toAddress = window.prompt("Transfer to address");
             if (!toAddress || !toAddress.match(/^0x[0-9A-Fa-f]{40}$/g)) {
@@ -125,33 +129,40 @@ export default ({ pKey }) => {
         </button>
       </Flex>
       <Flex
-        mt="2.0vw"
+        mt="3.0vw"
         justifyContent="space-between"
         alignItems="center"
-        style={{ fontSize: "1.0vw", minHeight: "30px" }}
+        style={{
+          fontSize: "1.0vw", minHeight: "30px", borderBottom: "1px solid black",
+          height: "3.333vw",
+        }}
       >
-        <Text>Collateral </Text>
+        <Text color="white" fontWeight="bold" fontSize="0.833vw">Collateral </Text>
         {cdp[0] < 0 ? (
           <Image src={loading} width="50px" />
         ) : (
-          <Text>{cdp[0] / 1e18} BUSD</Text>
-        )}
+            <Text color="white">{cdp[0] / 1e18} BUSD</Text>
+          )}
       </Flex>
       <Flex
-        mt="2.0vw"
+        mt="3.0vw"
         justifyContent="space-between"
         alignItems="center"
-        style={{ fontSize: "1.0vw", minHeight: "30px" }}
+        style={{
+          fontSize: "1.0vw", minHeight: "30px", borderBottom: "1px solid black",
+          height: "3.333vw",
+        }}
       >
-        <Text>Debt </Text>
+        <Text color="white" fontWeight="bold" fontSize="0.833vw">Debt </Text>
         {cdp[1] < 0 ? (
           <Image src={loading} width="50px" />
         ) : (
-          <Text>{cdp[1] / 1e18} Macy</Text>
-        )}
+            <Text color="white">{cdp[1] / 1e18} Macy</Text>
+          )}
       </Flex>
       <Flex mt="2.0vw" justifyContent="center" style={{ fontSize: "2.0vw" }}>
         <button
+          style={{ width: "8.611vw", height: "2.222vw", display: "flex", justifyContent: "center", alignItems:"center",backgroundColor: "transparent", border: "0.5px solid white", borderRadius:"10px",color: "white" }}
           onClick={async () => {
             const amount = window.prompt("Amount of BUSD to be locked");
             await sendLock(pKey, amount * 1e18);
@@ -161,6 +172,7 @@ export default ({ pKey }) => {
         </button>
         <Flex mx="3.0vw" />
         <button
+          style={{ width: "8.611vw", height: "2.222vw", display: "flex", justifyContent: "center", alignItems:"center",backgroundColor: "transparent", border: "0.5px solid white", borderRadius:"10px",color: "white" }}
           onClick={async () => {
             const amount = window.prompt("Amount of BUSD to be unlocked");
             await sendUnlock(pKey, amount * 1e18);

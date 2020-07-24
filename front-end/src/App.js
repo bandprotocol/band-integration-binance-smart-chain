@@ -10,6 +10,7 @@ import { ThemeProvider } from "styled-components";
 import { getAddress, sendApprove10M, getAllowance } from "./utils/proof";
 
 import loading from "./images/loading.gif";
+import footer from "./images/footer.png"
 
 import "./App.css";
 import BUSDFrame from "./components/BUSDFrame";
@@ -21,17 +22,17 @@ const isValidPk = (pk) => pk && pk.match(/^0x[0-9A-Fa-f]{64}$/g) !== null;
 const privateKeyForm = (pk, setPK) => {
   return (
     <Flex
-      flexDirection="row"
-      justifyContent="space-between"
-      style={{ width: "55vw" }}
+      flexDirection="column"
+      justifyContent="center"
     >
-      <Text mr="1vw" fontSize="1.0vw">
+      <Text mr="1vw" fontSize="0.833vw" color="white" fontWeight="bold">
         Login with your private key
       </Text>
       <input
         type="text"
         value={pk}
-        style={{ width: "30vw" }}
+        placeholder="Enter private key"
+        style={{ height: "3.333vw", width: "32.500vw", fontSize: "0.833vw", color: "white", backgroundColor: "transparent", border: "none", borderBottom: "1px solid white", marginBottom: "1.667vw" }}
         onChange={(e) => {
           setPK(e.target.value);
         }}
@@ -43,23 +44,23 @@ const privateKeyForm = (pk, setPK) => {
 const createAccount = (web3, setPK) => {
   return (
     <Flex
-      flexDirection="row"
-      justifyContent="space-between"
+      flexDirection="column"
+      alignItems="center"
       style={{ width: "55vw" }}
     >
-      <Text mr="1vw" fontSize="1.0vw">
-        Don't have an account?
-      </Text>
-      <Flex style={{ width: "30vw" }}>
-        <button
-          onClick={(e) => {
-            let account = web3.eth.accounts.create();
-            setPK(account.privateKey);
-          }}
-        >
-          Create one
+      <Text color="white" display="flex" justifyContent="center" fontSize="0.833vw" marginBottom="0.5vw">Don't have an account?</Text>
+
+      <button
+        style={{
+          width: "11.944vw", height: "2.778vw", backgroundColor: "#5269FF", color: "white", border: "none", borderRadius: "4px", fontSize: "0.833vw",
+        }}
+        onClick={(e) => {
+          let account = web3.eth.accounts.create();
+          setPK(account.privateKey);
+        }}
+      >
+        Create Account
         </button>
-      </Flex>
     </Flex>
   );
 };
@@ -68,55 +69,53 @@ const getTokens = (address, bnb, busd) => {
   return (
     <>
       <Flex
-        flexDirection="row"
+        flexDirection="column"
         justifyContent="space-between"
-        style={{ width: "55vw" }}
+        style={{ width: "100%" ,paddingLeft:"3.333vw", paddingBottom:"3.33vw" }}
       >
-        <Text mr="1vw" fontSize="1.0vw">
+        <Text mr="1vw" fontSize="0.833vw" fontWeight="bold" color="white" style={{marginBottom:"1.458vw"}}>
           Your address
         </Text>
-        <Flex style={{ width: "30vw" }}>{address}</Flex>
+        <Text color="white" fontSize="0.833vw" >{address}</Text>
       </Flex>
-      <br />
+
       <Flex
-        flexDirection="row"
+        flexDirection="column"
         justifyContent="space-between"
-        style={{ width: "55vw" }}
+        style={{ width: "100%" ,paddingLeft:"3.333vw", paddingBottom:"2.33vw" }}
       >
-        <Text mr="1vw" fontSize="1.0vw">
+        <Text mr="1vw" fontSize="0.833vw" fontWeight="bold" color="white" style={{marginBottom:"1.458vw"}}>
           Get testnet BNB & BUSD
         </Text>
         <a
           target="_blank"
           href="https://testnet.binance.org/faucet-smart"
-          style={{ display: "block", width: "30vw" }}
+          style={{ display: "block", width: "30vw", color:"#889AFF", textDecoration:"none", fontSize:"0.833vw" }}
         >
           testnet.binance.org/faucet-smart
         </a>
       </Flex>
-      <br />
       <Flex
         flexDirection="row"
         justifyContent="space-between"
-        style={{ width: "55vw" }}
+        style={{ width: "100%" ,paddingLeft:"3.333vw", paddingBottom:"2vw" }}
       >
-        <Text mr="1vw" fontSize="1.0vw">
+        <Text fontSize="0.833vw" color="white" fontWeight="bold">
           Your BNB balance
         </Text>
-        <Text textAlign="left" style={{ width: "30vw" }}>
+        <Text textAlign="right" color="white" style={{ marginRight: "3.33vw" }}>
           {bnb / 1e18}
         </Text>
       </Flex>
-      <br />
       <Flex
         flexDirection="row"
         justifyContent="space-between"
-        style={{ width: "55vw" }}
+        style={{ width: "100%" ,paddingLeft:"3.333vw", paddingBottom:"0.8vw" }}
       >
-        <Text mr="1vw" fontSize="1.0vw">
+        <Text fontSize="0.833vw" color="white" fontWeight="bold">
           Your BUSD balance
         </Text>
-        <Text textAlign="left" style={{ width: "30vw" }}>
+        <Text textAlign="right" color="white" style={{ marginRight: "3.33vw" }}>
           {busd / 1e18}
         </Text>
       </Flex>
@@ -148,26 +147,25 @@ const loginPage = (
     setIsLogin(true);
   };
   return (
-    <>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", height: address ? "38.264vw" : "23.153vw", width: "39.167vw", backgroundColor: "#212A65", borderRadius: "10px", marginTop: "-5vw" }}>
+      <p style={{ paddingTop: "32px", paddingBottom: "32px", color: "white", fontWeight: "bold", fontSize: "0.972vw" }}>LOG IN</p>
       {privateKeyForm(pk, setPK)}
       <br />
       {address ? getTokens(address, bnb, busd) : createAccount(web3, setPK)}
       <br />
+      <br />
       {bnb > 0 && busd > 0 ? (
         <button
           onClick={login}
-          style={{ padding: "1.0vw", borderRadius: "4px" }}
-        >
+        style={{
+          width: "8.264vw", height: "2.778vw", backgroundColor: "#5269FF", color: "white", border: "none", borderRadius: "4px", fontSize: "0.833vw",
+        }}>
           <Text fontSize="16px">Login</Text>
         </button>
       ) : (
-        <button disabled>
-          <Text fontSize="16px">
-            Please request BNB from the faucet to proceed
-          </Text>
-        </button>
-      )}
-    </>
+          <Text color="white" fontSize="0.833vw">Please request BNB and BUSD from faucet to proceed</Text>
+        )}
+    </div>
   );
 };
 
@@ -200,68 +198,57 @@ export default () => {
           });
           setBNB(BigNumber(bnbBalance));
           setBUSD(BigNumber(busdBalance));
-        } catch (e) {}
+        } catch (e) { }
       }, 500);
     }
 
     return () => [];
   }, [address]);
 
-  return !isLogin ? (
+  return <div style={{ display: "flex", justifyContent: "center", backgroundColor: "#040D45" }}>{!isLogin ? (
     <Flex
-      mt="40.0vh"
-      mx="auto"
+      height="100vh"
+      width="100vh"
+      display="flex"
       justifyContent="center"
       alignItems="center"
-      flexDirection="column"
-      width="70vw"
     >
       {!isLoading ? (
         loginPage(web3, pk, setPK, setIsLoading, address, setIsLogin, bnb, busd)
       ) : (
-        <Image src={loading} width="100px" />
-      )}
+          <Image src={loading} width="100px" />
+        )}
     </Flex>
   ) : (
-    <ThemeProvider theme={theme}>
-      <Flex
-        mt="2.5vw"
-        mx="auto"
-        justifyContent="center"
-        alignItems="center"
-        flexDirection="column"
-        width="70vw"
-      >
-        <Flex flexDirection="row" width="100%">
-          <Flex flex={1}>
-            <Text
-              fontSize="2.5vw"
-              fontWeight={900}
-              lineHeight="1.53vw"
-              color={colors.purple.dark}
-            >
-              Stock CDP App
-            </Text>
-          </Flex>
-          <Flex flex={1} />
-        </Flex>
         <Flex
-          mt="5.0vw"
-          flexDirection="row"
-          width="100%"
-          justifyContent="space-between"
+                height="100vh"
+        display="flex"
+        minWidth="68vw"
+          justifyContent="center"
+          alignItems="center"
+          flexDirection="column"
         >
-          <Flex flexDirection="column">
-            <BUSDFrame pKey={pk} />
-            <Flex mt="5.0vw" />
-            <Liquidate pKey={pk} />
-            <Flex mt="5.0vw" />
-          </Flex>
-          <Flex>
-            <Debt pKey={pk} />
+          <Flex
+            mt="5.0vw"
+            flexDirection="row"
+            width="100%"
+          justifyContent="space-between"
+          marginTop="-5vw"
+          >
+            <Flex flexDirection="column">
+              <BUSDFrame pKey={pk} />
+              <Flex mt="5.0vw" />
+              <Liquidate pKey={pk} />
+              <Flex mt="5.0vw" />
+            </Flex>
+            <Flex>
+              <Debt pKey={pk} />
+            </Flex>
           </Flex>
         </Flex>
-      </Flex>
-    </ThemeProvider>
-  );
+    )
+  }
+    )
+    <Image src={footer} style={{ position: "fixed", bottom: "5%", left: "50%", marginLeft: "-8vw", width: "17.917vw" }} />
+  </div>
 };

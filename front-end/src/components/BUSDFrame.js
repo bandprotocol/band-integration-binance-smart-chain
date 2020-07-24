@@ -25,7 +25,7 @@ export default ({ pKey }) => {
             data: "0x70a08231000000000000000000000000" + address.slice(2),
           });
           setBUSD(BigNumber(busdBalance));
-        } catch (e) {}
+        } catch (e) { }
       }, 500);
     }
 
@@ -37,38 +37,39 @@ export default ({ pKey }) => {
       flexDirection="column"
       style={{
         padding: "1.0vw",
-        border: "1px solid #333333",
-        minWidth: "32.0vw",
-        borderRadius: "4px",
+        paddingTop: "2vw",
+        borderRadius: "16px",
+        backgroundColor: "#212A65",
+        width: "32.500vw",
+        height: "17.500vw",
       }}
     >
-      <Flex
-        backgroundColor={colors.pink.dark}
-        justifyContent="space-between"
-        style={{ color: "white", margin: "-1.0vw", padding: "1.0vw" }}
-      >
-        <Text>Binance USD Balance</Text>
-
-        <A
-          href="https://testnet.binance.org/faucet-smart"
-          style={{ color: "white", textDecoration: "underline" }}
-        >
-          faucet ↗
-        </A>
-      </Flex>
+      <Text fontSize="0.972vw" fontWeight="bold" color="white" style={{ display: "flex", justifyContent: "center" }}>Binance USD Balance</Text>
       <Flex
         mt="2.0vw"
-        justifyContent="space-between"
-        style={{ fontSize: "0.95vw" }}
+        flexDirection="column"
+        style={{ fontSize: "0.95vw", marginBottom: "2.672vw" }}
       >
-        Address <Text>{address}</Text>
+        <Text fontWeight="bold" fontSize="0.833vw" color="white" style={{ marginBottom: "1.33vw" }}>Your Address</Text>
+        <Text color="white" fontSize="0.833vw">{address}</Text>
       </Flex>
       <Flex
-        mt="1.0vw"
+        height="3.333vw"
         justifyContent="space-between"
-        style={{ fontSize: "0.95vw" }}
+        alignItems="center"
+        style={{ fontSize: "0.95vw", borderBottom:"1px solid black" }}
       >
-        Amount <Text>{busd / 1e18 < 0 ? "loading..." : busd / 1e18} BUSD</Text>
+        <Flex>
+          <Text fontSize="0.833vw" fontWeight="bold" color="white" style={{marginRight:"1vw"}}>Amount</Text>
+          <a
+            target="_blank"
+            href="https://testnet.binance.org/faucet-smart"
+            style={{ color: "#889AFF", textDecoration: "none", fontSize: "0.833vw" }}
+          >
+            faucet
+        </a>
+        </Flex>
+        <Text color="white">{(busd / 1e18 < 0 ? "loading..." : busd / 1e18)} BUSD</Text>
       </Flex>
     </Flex>
   );

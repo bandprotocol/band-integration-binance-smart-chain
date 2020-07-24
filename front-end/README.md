@@ -1,68 +1,74 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Synthetic Stock App on Binance Smart Chain
 
-## Available Scripts
+## Play with live demo
 
-In the project directory, you can run:
+You can access the demo at [https://band-bsc-stock-cdp.surge.sh/](https://band-bsc-stock-cdp.surge.sh/)
 
-### `yarn start`
+### Metamask
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This application requires that you have Metamask installed on your browser. Please install Metamask to your browser before using the application. See [their website](https://metamask.io/) for more details and instructions on how to install.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Running the application
 
-### `yarn test`
+Make sure you're running Node version >= 10
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+$ node --version
+v13.13.0
+```
 
-### `yarn build`
+Install the required dependencies
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+yarn install
+```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Start the local web server
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+yarn start
+```
 
-### `yarn eject`
+## Interaction guide
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+You'll need some testnet BNB and BUSD to interact with the example. If you don't have any, please navigate to the Binance Smart Chain [faucet]((https://testnet.binance.org/faucet-smart)) to request some.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+After running `yarn start`, go to `http://localhost:3000/`. You should see something like the image below
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![](https://i.imgur.com/bZ8qceg.png)
 
-## Learn More
+Enter your testnet private key or click `Create Account` if you don't have one. Then click on `Login`.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![](https://i.imgur.com/MNUxjOt.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+Please wait until it finishes loading. If this is the first time you use this app, you will find it takes a while since the app has to send an `approve` transaction to the BUSD contract to allow it to transfer tokens on our behalf.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Once the above process is complete loading is complete, you'll arrive at the main CDP dashboard where you can start interacting with the application.
 
-### Analyzing the Bundle Size
+![](https://i.imgur.com/024AB6i.png)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+Let start by locking some BUSD into the StockCDP contract as collatoral.
 
-### Making a Progressive Web App
+Click `lock` button and enter the amount of cUSD to be locked
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+![](https://i.imgur.com/um86OVl.png)
 
-### Advanced Configuration
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+Wait until you see the enterede amount added under the **Collatoral** section.
 
-### Deployment
+![](https://i.imgur.com/XE87PJn.png)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
-### `yarn build` fails to minify
+Next is to try to create synthetic SPX(S&P500) into the system.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Click `borow` button and enter the amount of SPX to be locked
+
+![](https://i.imgur.com/JYW9rdo.png)
+
+Again, until your Macy token balance has been updated.
+
+![](https://i.imgur.com/JjlpyR9.png)
+
+From here, you can try playing around with other actions in the system and then see what it will happen. Have fun!
